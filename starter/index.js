@@ -99,15 +99,31 @@ console.log("==============");
  console.log("Total months: " + finances.length);
 
 // The net total amount of Profit/Losses over the entire period.
-var totalAmount = 0
+
+var totalAmount = 0;
 for (var i = 0; i < finances.length; i++) {
   totalAmount += finances[i][1];
 }
-console.log("Total: $" + totalAmount);
+ console.log("Total: $" + totalAmount);
+
 // The average of the changes in Profit/Losses over the entire period.
+// var average = totalAmount / finances.length;
 
 // You will need to track what the total change in profits is from month to month and then find the average.
+// to keep a track of total changes
+var totalAmount = 0;
 
+for ( var i = 1; i < finances.length; i++) {
+  // calculate the change for each week
+  var profitLossesFirstWeek = finances[i][1];
+  var profitLossesNextWeek = finances[i - 1][1];
+  var change = profitLossesFirstWeek - profitLossesNextWeek;
+  totalAmount += change; 
+}
+
+// calculate the average by divinding it by the number of months/changes
+var average = totalAmount / (finances.length - 1);
+console.log("Avergare change: " + average.toFixed(2));
 // (Total/(Number of months - 1))
 
 // The greatest increase in profits (date and amount) over the entire period.
