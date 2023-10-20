@@ -127,5 +127,12 @@ console.log("Avergare change: " + average.toFixed(2));
 // (Total/(Number of months - 1))
 
 // The greatest increase in profits (date and amount) over the entire period.
-
+// add variables to keep track of greatest increase followed with the month
+var greatestIncrease = 0;
+for (var i = 0; i < finances.length; i++) {
+  if (finances[i] > greatestIncrease) {
+    greatestIncrease = finances[i];
+  }
+}
+console.log("Greatest Increase in Profits/Losses: " + greatestIncrease);
 // The greatest decrease in losses (date and amount) over the entire period.
