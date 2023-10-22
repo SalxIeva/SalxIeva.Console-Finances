@@ -112,6 +112,10 @@ for (var i = 0; i < finances.length; i++) {
 // You will need to track what the total change in profits is from month to month and then find the average.
 // to keep a track of total changes
 var totalAmount = 0;
+var greatestIncrease = 0;
+var greatestIncreaseMonth = '';
+var greatestDecrease = 0;
+var greatestDecreaseMonth = '';
 
 for ( var i = 1; i < finances.length; i++) {
   // calculate the change for each week
@@ -119,20 +123,37 @@ for ( var i = 1; i < finances.length; i++) {
   var profitLossesNextWeek = finances[i - 1][1];
   var change = profitLossesFirstWeek - profitLossesNextWeek;
   totalAmount += change; 
+
+  if (change > greatestIncrease) {
+    greatestIncrease = change;
+    greatestIncreaseMonth = finances[i][0];
+  }
+
+  if (change < greatestDecrease) {
+    greatestDecrease = change;
+    greatestDecreaseMonth = finances[i][0];
+  }
 }
 
 // calculate the average by divinding it by the number of months/changes
 var average = totalAmount / (finances.length - 1);
 console.log("Avergare change: " + average.toFixed(2));
+
+console.log("Greatest Increase in Profits/Losses: " + greatestIncreaseMonth + " ($" + greatestIncrease +  ")");
 // (Total/(Number of months - 1))
 
 // The greatest increase in profits (date and amount) over the entire period.
-// add variables to keep track of greatest increase followed with the month
-var greatestIncrease = 0;
-for (var i = 0; i < finances.length; i++) {
-  if (finances[i] > greatestIncrease) {
-    greatestIncrease = finances[i];
-  }
-}
-console.log("Greatest Increase in Profits/Losses: " + greatestIncrease);
+// add variables to keep track of greatest increase followed with the month using concatenation
+
+// var greatestIncrease = 0;
+// var greatestIncreaseMonth = '';
+
+// for (var i = 1; i < finances.length; i++) {
+//   if (finances[i] > greatestIncrease) {
+//     greatestIncrease = finances[i];
+//   }
+// }
+// console.log("Greatest Increase in Profits/Losses: " + greatestIncreaseMonth + "($" + greatestIncrease +  ")");
+
 // The greatest decrease in losses (date and amount) over the entire period.
+console.log("Greatest Decrease in Profits/Losses: " + greatestDecreaseMonth + " ($" + greatestDecrease +  ")");
